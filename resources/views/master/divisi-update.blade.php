@@ -7,18 +7,19 @@
             <div class="card-header">
                 <h4 class="card-title">Update Data Divisi</h4>
             </div>
-            <form class="form" action="#" method="POST" enctype="multipart/form-data" class="step-form-horizontal">
+            <form id="form" class="form" action="{{route('editdivisi')}}" method="POST" enctype="multipart/form-data" class="step-form-horizontal">
+                {{ csrf_field() }}
                 <div class="card-body">
                     <div class="form-group">
                         <label>Kode<span class="text-danger">*</span></label>
-                        <input name="kddvs" class="form-control form-control-md @error('kddvs') is-invalid @enderror" type=" text" placeholder="Kode" value="" />
+                        <input name="kddvs" class="form-control form-control-md @error('kddvs') is-invalid @enderror" type=" text" placeholder="Kode" value='{{empty($dataDivisi->VKDDV) ? "" : $dataDivisi->VKDDV}}' readonly="readonly" />
                         @error('kddvsi')
                         <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
                     <div class="form-group">
                         <label>Nama<span class="text-danger">*</span></label>
-                        <input name="nmdvs" class="form-control form-control-md @error('nmdvs') is-invalid @enderror" type=" text" placeholder="Nama" value="" />
+                        <input name="nmdvs" class="form-control form-control-md @error('nmdvs') is-invalid @enderror" type=" text" placeholder="Nama" value='{{empty($dataDivisi->VNMDV) ? "" : $dataDivisi->VNMDV}}' />
                         @error('nmdvs')
                         <div class="invalid-feedback">{{ $message }}</div>
                         @enderror

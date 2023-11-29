@@ -20,3 +20,7 @@ Route::get('/', function () {
 
 Route::get('/divisi', [DivisiController::class, 'index'])->name('divisi');
 Route::get('/divisi-add', [DivisiController::class, 'tambahDivisi'])->name('tambahdivisi');
+Route::post('/divisi-save', [DivisiController::class, 'simpanDivisi'])->name('simpandivisi');
+Route::get('/divisi/{kode}', [DivisiController::class, 'dataDivisiByKode'])->name('divisibykode');
+Route::post('/divisi-update', [DivisiController::class, 'updateDivisi'])->name('editdivisi');
+Route::delete('/divisi-delete/{id}', [DivisiController::class, 'hapusDivisi'])->name('hapusdivisi');

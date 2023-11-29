@@ -10,13 +10,14 @@
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/images/logo-pis.ico') }}">
     <link href="{{ asset('assets/vendor/owl-carousel/owl.carousel.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/vendor/bootstrap-select/dist/css/bootstrap-select.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/vendor/sweetalert2/dist/sweetalert2.min.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/vendor/datatables/css/jquery.dataTables.min.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
     <!-- <link href="https://cdn.lineicons.com/2.0/LineIcons.css" rel="stylesheet"> -->
 </head>
 
 <body>
-
+    @include('sweetalert::alert')
     <!--*******************
         Preloader start
     ********************-->
@@ -138,7 +139,7 @@
                             <span class="nav-text">Master</span>
                         </a>
                         <ul aria-expanded="false">
-                            <li><a href="#">Divisi</a></li>
+                            <li><a href="{{route('divisi')}}">Divisi</a></li>
                             <li><a href="#">Jabatan</a></li>
                             <li><a href="#">Karyawan</a></li>
                         </ul>
@@ -241,10 +242,53 @@
     <!-- Dashboard 1 -->
     <!-- <script src="{{ asset('assets/js/dashboard/dashboard-1.js') }}"></script> -->
 
+    <!-- Sweetalert2 -->
+    <!-- <script src="{{ asset('assets/vendor/sweetalert2/dist/sweetalert2.min.js') }}"></script> -->
+    <!-- <script src="{{ asset('assets/js/plugins-init/sweetalert.init.js') }}"></script> -->
+
     <!-- Datatable -->
     <script src="{{ asset('assets/vendor/datatables/js/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('assets/js/plugins-init/datatables.init.js') }}"></script>
 
+    <script type="text/javascript">
+        //the confirm class that is being used in the delete button
+        $('.confirm').click(function(event) {
+
+            //This will choose the closest form to the button
+            var form = $(this).closest("form");
+
+            //don't let the form submit yet
+            event.preventDefault();
+
+            //configure sweetalert alert as you wish
+            Swal.fire({
+                title: `Apakah anda yakin ingin menghapus data ini ?`,
+                text: "Jika Anda menghapusnya, itu akan hilang selamanya.",
+                cancelButtonText: "Batal",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'HAPUS'
+            }).then((result) => {
+                // console.log(result, '<<< log');
+                //in case of deletion confirm then make the form submit
+                if (result.isConfirmed) {
+                    form.submit();
+                    // var form = document.createElement('form');
+                    // // console.log(form, '<<< form');
+                    // form.action = event.target.href;
+                    // form.method = 'POST';
+                    // form.innerHTML = `
+                    // {{ csrf_field() }}
+                    // {{ method_field('DELETE') }} 
+                    // `;
+                    // document.body.appendChild(form);
+                    // form.submit();
+                }
+            })
+        });
+    </script>
     <script>
         function assignedDoctor() {
 

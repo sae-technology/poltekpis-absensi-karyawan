@@ -25,7 +25,24 @@
                             </tr>
                         </thead>
                         <tbody>
-
+                            @foreach($dataDivisi as $no => $x)
+                            <tr>
+                                <td>{{ ++$no }}</td>
+                                <td>{{ $x->VKDDV  }}</td>
+                                <td>{{ $x->VNMDV }}</td>
+                                <td>
+                                    <div class="d-flex">
+                                        <a href="{{route('divisibykode',$x->VKDDV)}}" class="btn btn-info shadow btn-sm sharp mr-1"><i class="fa fa-pencil"></i></a>
+                                        <form action="{{ route('hapusdivisi', $x->VKDDV) }}" method="POST" enctype="multipart/form-data">
+                                            {{ csrf_field() }}
+                                            {{ method_field('DELETE') }}
+                                            <button type="submit" class="btn btn-danger shadow btn-sm sharp confirm"><i class=" fa fa-trash"></i></button>
+                                        </form>
+                                        <!-- <a href="{{route('hapusdivisi',$x->VKDDV)}}" class="btn btn-danger shadow btn-sm sharp confirm"><i class=" fa fa-trash"></i></a> -->
+                                    </div>
+                                </td>
+                            </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
