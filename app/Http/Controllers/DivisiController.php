@@ -32,6 +32,9 @@ class DivisiController extends Controller
         $request->validate([
             'kddvs' => 'required',
             'nmdvs' => 'required',
+        ], [
+            'kddvs.required' => 'Terjadi kesalahan!',
+            'nmdvs.required' => 'Nama divisi harus diisi.'
         ]);
 
         $dataArray = ([
