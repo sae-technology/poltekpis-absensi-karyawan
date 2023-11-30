@@ -4,6 +4,9 @@
 <div class="row">
     <div class="col-xl-12 col-xxl-12">
         <div class="card">
+            <div class="card-footer">
+                <a type="button" href="{{route('divisi')}}" class="btn btn-info btn-sm btn-rounded wspace-no"><i class="las scale5 la-angle-left mr-2"></i>Kembali</a>
+            </div>
             <div class="card-header">
                 <h4 class="card-title">Update Data Divisi</h4>
             </div>
