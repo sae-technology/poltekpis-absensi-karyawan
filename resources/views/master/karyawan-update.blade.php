@@ -40,14 +40,32 @@
                         </div>
                     </div>
                     --}}
+                    @php
+                        $selectedIIDJBTN = empty($dataKaryawan->IIDJBTN) ? "" : $dataKaryawan->IIDJBTN;
+                        $selectedIIDDV = empty($dataKaryawan->IIDDV) ? "" : $dataKaryawan->IIDDV;
+                        $divisi = $dataDivisi->where('IIDDV', $selectedIIDDV)->first();
+                        $jabatan = $dataJabatan->where('IIDJBTN', $selectedIIDJBTN)->first();
+                    @endphp
+                    <div class="form-group">
+                        <label>Jabatan</label>
+                        <div>
+                            <select name="jbtnkrywn" class="form-control">
+                                <option value='{{ $selectedIIDJBTN }}'>
+                                    {{ $jabatan ? $jabatan->VNMJBTN : "== Pilih Jabatan ==" }}
+                                </option>
+                            
+                                @foreach ($dataJabatan as $jbtn)
+                                    @if (!$jabatan || $jbtn->IIDJBTN != $jabatan->IIDJBTN)
+                                        <option value="{{ $jbtn->IIDJBTN }}">{{ $jbtn->VNMJBTN }}</option>
+                                    @endif
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
                     <div class="form-group">
                         <label>Divisi</label>
                         <div>
                             <select name="dvkrywn" class="form-control">
-                                @php
-                                    $selectedIIDDV = empty($dataKaryawan->IIDDV) ? "" : $dataKaryawan->IIDDV;
-                                    $divisi = $dataDivisi->where('IIDDV', $selectedIIDDV)->first();
-                                @endphp
                                 <option value='{{ $selectedIIDDV }}'>
                                     {{ $divisi ? $divisi->VNMDV : "== Pilih Divisi ==" }}
                                 </option>

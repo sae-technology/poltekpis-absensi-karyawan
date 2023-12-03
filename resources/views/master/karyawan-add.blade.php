@@ -15,7 +15,7 @@
                 <div class="card-body">
                     <div class="form-group">
                         <label>Id<span class="text-danger">*</span></label>
-                        <input name="idkrywn" class="form-control form-control-md @error('idkrywn') is-invalid @enderror" type=" text" placeholder="Id" value="{{$IdKaryawan}}" readonly="readonly" disabled />
+                        <input name="idkrywn" class="form-control form-control-md @error('idkrywn') is-invalid @enderror" type=" text" placeholder="Id" value="{{$IdKaryawan}}" readonly="readonly" />
                         @error('idkrywn')
                         <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
@@ -28,6 +28,17 @@
                         @enderror
                     </div>
                     <div class="form-group">
+                        <label for="name">Jabatan</label>
+                        <div>
+                            <select name="jbtnkrywn" class="form-control">
+                                <option value="">== Pilih Jabatan ==</option>
+                                @foreach ($dataJabatan as $jbtn)
+                                    <option value="{{ $jbtn->IIDJBTN }}">{{ $jbtn->VNMJBTN }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <label>Divisi<span class="text-danger">*</span></label>
                         <div>
                             <select name="dvkrywn" class="form-control">
@@ -38,19 +49,6 @@
                             </select>
                         </div>
                     </div>
-                    {{-- Jabatan
-                    <div class="form-group">
-                        <label for="name">Jabatan</label>
-                        <div>
-                            <select name="jbtnkrywn" class="form-control">
-                                <option value="">== Pilih Jabatan ==</option>
-                                @foreach ($AllDivisi as $dv)
-                                    <option value="{{ $dv->IIDDV }}">{{ $dv->VNMDV }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
-                    --}}
                 </div>
                 <div class="card-footer">
                     <button type="submit" class="btn btn-primary btn-sm btn-rounded wspace-no"><i class="las scale5 la-save mr-2"></i>Simpan</button>

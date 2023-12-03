@@ -8,6 +8,7 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 use App\Models\Karyawan;
 use App\Models\Divisi;
+use App\Models\Jabatan;
 
 class KaryawanController extends Controller
 {
@@ -21,14 +22,16 @@ class KaryawanController extends Controller
 
         $dataKaryawan = Karyawan::getAllKaryawan();
         $dataDivisi = Divisi::getAllDivisi();
-        return view('master.karyawan-list', compact('dataKaryawan', 'dataDivisi'));
+        $dataJabatan = Jabatan::getAllJabatan();
+        return view('master.karyawan-list', compact('dataKaryawan', 'dataDivisi', 'dataJabatan'));
     }
 
     public function tambahKaryawan()
     {
         $IdKaryawan = Karyawan::getIdKaryawan();
         $dataDivisi = Divisi::getAllDivisi();
-        return view('master.karyawan-add', compact('IdKaryawan', 'dataDivisi'));
+        $dataJabatan = Jabatan::getAllJabatan();
+        return view('master.karyawan-add', compact('IdKaryawan', 'dataDivisi', 'dataJabatan'));
     }
 
     public function simpanKaryawan(Request $request)
@@ -43,6 +46,7 @@ class KaryawanController extends Controller
 
         $dataArray = ([
             'VNMKRYWN' => $request->nmkrywn,
+            'IIDJBTN' => $request->jbtnkrywn,
             'IIDDV' => $request->dvkrywn,
             'DTINKRYWN' => Carbon::now()->format('Y-m-d H:i:s'),
             'IIDINKRYWN' => 1,
@@ -63,7 +67,8 @@ class KaryawanController extends Controller
     {
         $dataKaryawan = Karyawan::getKaryawanById($id)[0];
         $dataDivisi = Divisi::getAllDivisi();
-        return view('master.karyawan-update', compact('dataKaryawan', 'dataDivisi'));
+        $dataJabatan = Jabatan::getAllJabatan();
+        return view('master.karyawan-update', compact('dataKaryawan', 'dataDivisi', 'dataJabatan'));
     }
 
     public function updateKaryawan(Request $request)
@@ -82,7 +87,7 @@ class KaryawanController extends Controller
             'DTGLLHR' => $request->tgllhr,
             'VAGMA' => $request->agma,
             'TXALMT' => $request->almt,
-            'IIDJBTN' => $request->jbtn,
+            'IIDJBTN' => $request->jbtnkrywn,
             'IIDDV' => $request->dvkrywn,
             'DTMDFKRYWN' => Carbon::now()->format('Y-m-d H:i:s'),
             'IIDMDFKRYWN' => 1,

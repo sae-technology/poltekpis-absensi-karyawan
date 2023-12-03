@@ -47,11 +47,12 @@
                                     </div>
                                 </td>
                                 <td>{{ $x->VNMKRYWN }}</td>
-                                <td>{{ $x->IIDJBTN }}</td>
                                 @php
                                     $divisi = $dataDivisi->where('IIDDV', $x->IIDDV)->first();
+                                    $jabatan = $dataJabatan->where('IIDJBTN', $x->IIDJBTN)->first();
                                 @endphp
-                                <td>{{ $divisi->VNMDV ?? '' }}</td>
+                                <td>{{ $jabatan->VNMJBTN ?? $x->IIDJBTN }}</td>
+                                <td>{{ $divisi->VNMDV ?? $x->IIDDV }}</td>
                                 <td>{{ $x->VNIP }}</td>
                                 <td>{{ $x->VNIK }}</td>
                                 <td>{{ $x->VTMPTLHR }}</td>
