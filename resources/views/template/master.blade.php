@@ -140,7 +140,7 @@
                         </a>
                         <ul aria-expanded="false">
                             <li><a href="{{route('divisi')}}">Divisi</a></li>
-                            <li><a href="#">Jabatan</a></li>
+                            <li><a href="{{route('jabatan')}}">Jabatan</a></li>
                             <li><a href="{{route('karyawan')}}">Karyawan</a></li>
                         </ul>
                     </li>

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DivisiController;
+use App\Http\Controllers\JabatanController;
 use App\Http\Controllers\KaryawanController;
 use Illuminate\Support\Facades\Route;
 
@@ -25,6 +26,13 @@ Route::post('/divisi-save', [DivisiController::class, 'simpanDivisi'])->name('si
 Route::get('/divisi/{kode}', [DivisiController::class, 'dataDivisiByKode'])->name('divisibykode');
 Route::post('/divisi-update', [DivisiController::class, 'updateDivisi'])->name('editdivisi');
 Route::delete('/divisi-delete/{id}', [DivisiController::class, 'hapusDivisi'])->name('hapusdivisi');
+
+Route::get('/jabatan', [JabatanController::class, 'index'])->name('jabatan');
+Route::get('/jabatan-add', [JabatanController::class, 'tambahJabatan'])->name('tambahjabatan');
+Route::post('/jabatan-save', [JabatanController::class, 'simpanJabatan'])->name('simpanjabatan');
+Route::get('/jabatan/{kode}', [JabatanController::class, 'dataJabatanByKode'])->name('jabatanbykode');
+Route::post('/jabatan-update', [JabatanController::class, 'updateJabatan'])->name('editjabatan');
+Route::delete('/jabatan-delete/{id}', [JabatanController::class, 'hapusJabatan'])->name('hapusjabatan');
 
 Route::get('/karyawan', [KaryawanController::class, 'index'])->name('karyawan');
 Route::get('/karyawan-add', [KaryawanController::class, 'tambahKaryawan'])->name('tambahkaryawan');
